@@ -1,0 +1,15 @@
+DROP TABLE 00_Current;
+DROP TABLE 01_Daytona;
+DROP TABLE 02_Rockingham;
+DROP TABLE 03_Homestead;
+DROP TABLE 04_Atlanta;
+DROP TABLE 05_CharlotteRoval;
+DROP TABLE 06_Michigan;
+DROP TABLE 07_Richmond;
+DROP TABLE 08_Darlington;
+DROP TABLE 09_Dover;
+DROP TABLE 10_LasVegas;
+DROP TABLE 11_CanadianTire;
+DROP TABLE 12_Texas;
+DROP TABLE 13_Martinsville;
+DROP TABLE 14_Phoenix;
