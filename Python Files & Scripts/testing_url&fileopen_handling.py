@@ -1,35 +1,56 @@
-"""from selenium import webdriver
+from ir_webstats_rc import constants as cts
+from ir_webstats_rc.client import iRWebStats
+from ir_webstats_rc.util import clean
 
-driver = webdriver.Chrome()
-driver.get('https://members.iracing.com/membersite/member/SeriesStandings.do?season=2721&carid=123')"""
+file_var = open('/home/eric/Desktop/Login Info.txt', 'r')
+all_lines_var = file_var.readlines()
 
-#import csv
-#import requests
+email = all_lines_var[1]
+pswd = all_lines_var[2]
 
-#url2 = 'https://members.iracing.com/memberstats/member/GetSeasonStandings?format=csv&seasonid=2721&carclassid=71' \
-      '&clubid=-1&raceweek=-1&division=-1&start=1&end=25&sort=points&order=desc '
-#url1 = 'https://members.iracing.com/membersite/member/Home.do'    #this worked properly with authentication
-# resp = requests.get(url, auth=('email', 'password'))
+print(email)
+print(pswd)
 
-#ses = requests.Session()
+irw = iRWebStats()
+irw.login(email, pswd)
+if not irw.logged:
+    print("INVALID CREDENTIALS")
+    exit()
 
-#ses.post(url1, auth=('email', 'password'))
+# res = irw.season_standings(season=2721, carclass=71, page=1)
 
-#resp1 = ses.get(url1)
+# print(res)
+# print(res[0][0]['displayname'])
 
-#print(resp1.text)
+# print()
+print()
 
-#resp2 = ses.get(url2, cookies=resp1.cookies)
+url1 = 'https://members.iracing.com/memberstats/member/GetSeasonStandings?format=csv&seasonid=2721&carclassid=71' \
+       '&clubid=-1&raceweek=-1&division=-1&start=1&end=25&sort=points&order=desc'
+resp = irw.download_csv(url1)
+print(resp)
+print(type(resp))
+rtp_all_file = open('/home/eric/Desktop/00_Current.csv', 'w')
+wrtr = rtp_all_file.write(resp)
+rtp_all_file.close()
 
-#print(resp2.text)
+"""
+for pg in range(67):
+    print(pg)
+    print((pg + 1))
+    resu, totres = irw.season_standings(season=2721, carclass=71, page=(pg + 1))
+    print(totres)
+    print(resu)
+    print(resu[0]['displayname'])
+"""
+"""
+result_page, num_rows = irw.season_standings(season=2721, carclass=71)
+print(result_page)
 
-"""May need to use lib other than requests to create a session that emulates clicking the Output CSV button.
-    Do further research into options to achieve downloading the csv from the site. Perhaps selenium..."""
+last_page = (int(num_rows / 25)) + 1
+next_page = 2
 
-"""with open('out.csv', 'w') as f:
-    writer = csv.writer(f)
-    for line in resp.iter_lines():
-        writer.writerow(line.decode('utf-8').split(','))"""
-
-import ir_webstats
-from ir_webstats.client import iRWebStats
+while next_page < last_page:
+    result_page, num_rows = irw.season_standings(season=2721, carclass=71, page=next_page)
+    print(result_page[0]['displayname'])
+"""
