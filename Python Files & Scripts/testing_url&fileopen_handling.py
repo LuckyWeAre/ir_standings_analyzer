@@ -1,6 +1,6 @@
-from ir_webstats_rc import constants as cts
-from ir_webstats_rc.client import iRWebStats
-from ir_webstats_rc.util import clean
+from ir_webstats_rc_09012020 import constants as cts
+from ir_webstats_rc_09012020.client import iRWebStats
+from ir_webstats_rc_09012020.util import clean
 
 file_var = open('/home/eric/Desktop/Login Info.txt', 'r')
 all_lines_var = file_var.readlines()

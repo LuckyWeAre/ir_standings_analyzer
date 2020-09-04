@@ -1,4 +1,3 @@
-#!/usr/bin/python
 """ Example usage of iRWebStats """
 from ir_webstats_rc import constants as ct
 from ir_webstats_rc.client import iRWebStats
