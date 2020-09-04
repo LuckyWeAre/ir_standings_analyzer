@@ -2,7 +2,7 @@ from ir_webstats_rc_09012020 import constants as cts
 from ir_webstats_rc_09012020.client import iRWebStats
 from ir_webstats_rc_09012020.util import clean
 
-file_var = open('/home/eric/Desktop/Login Info.txt', 'r')
+file_var = open('../Private_Info.txt', 'r')
 all_lines_var = file_var.readlines()
 
 email = all_lines_var[1]

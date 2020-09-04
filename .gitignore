@@ -1,2 +1,5 @@
 # Ignore txt files
 *.txt
+
+# Ignore Priavte Constants
+private_constants.py

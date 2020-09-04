@@ -1,3 +1,9 @@
+#!/usr/bin/python
+""" iRWebStats class. Check examples.py for example usage. """
+__author__ = "Jeyson Molina"
+__email__ = "jjmc82@gmail.com"
+__version__ = "1.3"
+
 import urllib
 import urllib.parse
 
@@ -640,14 +646,12 @@ class iRWebStats:
 
         return record
 
-    def get_output_csv(self, season, carclass, club=ct.ALL, raceweek=ct.ALL, division=ct.ALL, sort=ct.SORT_POINTS,
-                       order=ct.ORDER_DESC, page=1):
-        # r = self.__req(url_param)
-        return ct.ALL
-
     def download_csv(self, url_param):
         r = self.__req(url_param)
         return r
+
+    def get_output_csv(self):
+        return 0
 
 
 if __name__ == '__main__':
