@@ -2,14 +2,20 @@ from ir_webstats_rc_09012020 import constants as cts
 from ir_webstats_rc_09012020.client import iRWebStats
 from ir_webstats_rc_09012020.util import clean
 
-file_var = open('../Private_Info.txt', 'r')
+import private_constants as priv_cts
+
+"""file_var = open('../Private_Info.txt', 'r')
 all_lines_var = file_var.readlines()
 
 email = all_lines_var[1]
-pswd = all_lines_var[2]
+pswd = all_lines_var[2]"""
 
-print(email)
-print(pswd)
+
+print(priv_cts.EMAIL)
+print(priv_cts.PASSWORD)
+
+email = priv_cts.EMAIL
+pswd = priv_cts.PASSWORD
 
 irw = iRWebStats()
 irw.login(email, pswd)

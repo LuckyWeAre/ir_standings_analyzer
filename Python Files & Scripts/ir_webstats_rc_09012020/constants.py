@@ -94,6 +94,8 @@ URL_GET_PASTSERIES = 'https://members.iracing.com/membersite/member/PreviousSeas
 
 URL_GET_WORLDRECORD = 'https://members.iracing.com/memberstats/member/GetWorldRecords?seasonyear=%s&seasonquarter=%s&carid=%s&trackid=%s&custid=%s&format=json&upperbound=1'
 
+URL_OUTPUT_CSV = 'https://members.iracing.com/memberstats/member/GetSeasonStandings?format=csv&seasonid=%s&carclassid=%s&clubid=%s&raceweek=%s&division=%s&start=1&end=25&sort=%s&order=%s'
+
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.52 Safari/537.17'
     , 'Referer': 'https://members.iracing.com/membersite/login.jsp', 'Connection': 'keep-alive',
