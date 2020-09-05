@@ -3,3 +3,6 @@
 
 # Ignore Priavte Constants
 private_constants.py
+
+# Ignore generated .csv files
+*.csv
