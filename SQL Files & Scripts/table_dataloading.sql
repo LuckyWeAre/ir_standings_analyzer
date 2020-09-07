@@ -1,91 +1,89 @@
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/00 - All Data.csv' INTO TABLE 00_Current
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/00_Current.csv' INTO TABLE 00_Current
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/01 - Daytona.csv' INTO TABLE 01_Daytona
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/01_Daytona.csv' INTO TABLE 01_Daytona
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/02 - Rockingham.csv' INTO TABLE 02_Rockingham
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/02_Rockingham.csv' INTO TABLE 02_Rockingham
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/03 - Homestead.csv' INTO TABLE 03_Homestead
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/03_Homestead.csv' INTO TABLE 03_Homestead
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/04 - Atlanta.csv' INTO TABLE 04_Atlanta
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/04_Atlanta.csv' INTO TABLE 04_Atlanta
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/05 - Charlotte Roval.csv' INTO TABLE 05_CharlotteRoval
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/05_CharlotteRoval.csv' INTO TABLE 05_CharlotteRoval
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/06 - Michigan.csv' INTO TABLE 06_Michigan
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/06_Michigan.csv' INTO TABLE 06_Michigan
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/07 - Richmond.csv' INTO TABLE 07_Richmond
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/07_Richmond.csv' INTO TABLE 07_Richmond
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/08 - Darlington.csv' INTO TABLE 08_Darlington
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/08_Darlington.csv' INTO TABLE 08_Darlington
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/09 - Dover.csv' INTO TABLE 09_Dover
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/09_Dover.csv' INTO TABLE 09_Dover
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/10 - Las Vegas.csv' INTO TABLE 10_LasVegas
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/10_LasVegas.csv' INTO TABLE 10_LasVegas
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/11 - Canadian Tire.csv' INTO TABLE 11_CanadianTire
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/11_CanadianTire.csv' INTO TABLE 11_CanadianTire
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/12 - Texas.csv' INTO TABLE 12_Texas
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-LINES TERMINATED BY '\r\n'
-IGNORE 1 LINES;
-/*
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/13 - Martinsville.csv' INTO TABLE 13_Martinsville
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/12_Texas.csv' INTO TABLE 12_Texas
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE '/home/eric/Documents/NASCAR Road to Pro CSVs/14 - Phoenix.csv' INTO TABLE 14_Phoenix
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/13_Martinsville.csv' INTO TABLE 13_Martinsville
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES;
 
-*/
+LOAD DATA LOCAL INFILE '/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/14_Phoenix.csv' INTO TABLE 14_Phoenix
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES;

@@ -1,3 +1,3 @@
-source /home/eric/Documents/iRacing Points Project/table_deletion.sql;
-source /home/eric/Documents/iRacing Points Project/table_creation.sql;
-source /home/eric/Documents/iRacing Points Project/table_dataloading.sql;
+source /home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_deletion.sql;
+source /home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_creation.sql;
+source /home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_dataloading.sql;
