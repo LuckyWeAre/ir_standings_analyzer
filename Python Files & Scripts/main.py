@@ -99,26 +99,21 @@ for i in range(len(result)):
 
 print(names)
 
-points_by_id = []
-iter_file_names = iter(file_names)
-# get length of files for later use of when to stop iterating through for loops to only
-# include events that have been run
-print(len(iter_file_names))
-next(iter_file_names)
-# iterate through each file (skipping overall)
-for i in iter_file_names:
-    # iterate through each id
-    for j in ids:
-        # get points for that id from that event file
-        result = sql.execute_query('SELECT Points FROM ' + str(i) + ' WHERE CustomerID=' + str(j) + ';')
-        # if there are no points, it's 0, otherwise the points from that event
-        if result:
-            points_by_id.append(result[0][0])
-        else:
-            points_by_id.append(0)
-        break  # breaking after first id for debug purposes
+pts_by_id = {}
+for id in ids:
+    pts_by_id[id] = []
+    for index, name in enumerate(file_names):
+        if index != 0:
+            # get points for that id from that event file
+            result = sql.execute_query('SELECT Points FROM ' + name + ' WHERE CustomerID=' + str(id) + ';')
+            # if there are no points, it's 0, otherwise the points from that event
+            if result:
+                pts_by_id.setdefault(id, []).append(result[0][0])
+            else:
+                pts_by_id.setdefault(id, []).append(0)
+    # break  # breaking after first id for debug purposes
 
-print(points_by_id)
+print(pts_by_id)
 
 # Close DB connection at end of program
 sql.close_connection()
