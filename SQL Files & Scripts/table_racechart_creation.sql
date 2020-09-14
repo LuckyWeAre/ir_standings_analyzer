@@ -1,4 +1,4 @@
-CREATE TABLE 00_Current(
+CREATE TABLE Races_Chart(
     CustomerID INT NOT NULL,
     Name VARCHAR(255) NOT NULL UNIQUE,
     Race1Points INT NOT NULL,

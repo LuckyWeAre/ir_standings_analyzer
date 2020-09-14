@@ -8,10 +8,11 @@ from SQL_Helper.helper import SQL_Helper
 # Main
 """Get CSV files from iRacing stats page for RTP series and write them to respective files"""
 
-# logging into iRacing site using Rob Crouch's fork of ir_webstats
+# Setting log in information for iRacing website
 email = priv_cts.EMAIL
 pswd = priv_cts.IRACING_PASSWORD
 
+# logging into iRacing site using Rob Crouch's fork of ir_webstats
 iracing = iRWebStats()
 iracing.login(email, pswd)
 if not iracing.logged:
@@ -40,10 +41,14 @@ for i in range(num_races + 1):
 sql = SQL_Helper(priv_cts.HOST, priv_cts.USER, priv_cts.SQL_PASSWORD, 'RTP')
 sql.open_connection()
 
+# Deleting previous tables in Database to start with freshly loaded tables (will update to use already created tables
+#   in a later iteration of this code)
 print('starting table deletion')  # Debug
+# Pulling sql commands from .sql file
 commands = sql.get_commands_from_script(
     '/home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_deletion.sql')
 # print(commands)
+# Looping through to execute each command from the file
 for command in commands:
     try:
         if command.strip() != '':
@@ -54,10 +59,14 @@ for command in commands:
     except IOError as msg:
         print('Command Skipped:  ', msg)
 
+# Creating new tables for use in the DB to hold and manipulate data (will be updated in a later iteration to utilize
+#   existing tables rather than creating new ones)
 print('completed table deletion, starting table creation')  # Debug
+# Pulling sql commands from .sql file
 commands = sql.get_commands_from_script(
     '/home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_creation.sql')
 # print(commands)
+# Looping through to execute each command from the file
 for command in commands:
     try:
         if command.strip() != '':
@@ -68,10 +77,13 @@ for command in commands:
     except IOError as msg:
         print('Command Skipped:  ', msg)
 
-print('completed table creation, starting table data loading')
+# Loading data into the newly created tables
+print('completed table creation, starting table data loading')  # Debug
+# Pulling sql commands from .sql file
 commands = sql.get_commands_from_script(
     '/home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_dataloading.sql')
 # print(commands)
+# Looping through to execute each command from the file
 for command in commands:
     try:
         if command.strip() != '':
@@ -82,10 +94,13 @@ for command in commands:
     except IOError as msg:
         print('Command Skipped:  ', msg)
 
+# Committing the executed queries to the Database after successful completion of queries
 sql.execute_query('commit')
 
+# Getting customer IDs and Names of drivers from the Road To Pro Series
 result = sql.execute_query('SELECT CustomerID, Name FROM 00_Current ORDER BY Points DESC;')
-print(result)
+print(result)   # Debug to ensure select statement got proper data
+
 
 ids = []
 names = []
@@ -114,6 +129,71 @@ for id in ids:
     # break  # breaking after first id for debug purposes
 
 print(pts_by_id)
+print()
+print(pts_by_id.get(ids[0])[0])
+print()
+
+# Now take data and write it to csv for upload to DB
+point_data_file = open('/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/RTP_Points_Table.csv', 'w')
+point_data_file.write('\"custID\",\"Name\",\"DaytonaPts\",\"RockinghamPts\",\"HomesteadPts\",\"AtlantaPts\", '
+                      '\"CharlotteRovalPts\",\"MichiganPts\",\"RichmondPts\",\"DarlingtonPts\",\"DoverPts\", '
+                      '\"LasVegasPts\",\"CanadianTirePts\",\"TexasPts\",\"MartinsvillePts\",\"PhoenixPts\"\n')
+"""point_data_file.write('\"' + str(ids[0]) + '\",\"' + str(pts_by_id.get(ids[0])[0]) + '\",\"' +
+                      str(pts_by_id.get(ids[0])[1]) + '\",\"' + str(pts_by_id.get(ids[0])[2]) +
+                      str(pts_by_id.get(ids[0])[3]) + '\",\"' + str(pts_by_id.get(ids[0])[4]) + '\",\"' +
+                      str(pts_by_id.get(ids[0])[5]) + str(pts_by_id.get(ids[0])[6]) + '\",\"' +
+                      str(pts_by_id.get(ids[0])[7]) + '\",\"' + str(pts_by_id.get(ids[0])[8]) +
+                      str(pts_by_id.get(ids[0])[9]) + '\",\"' + str(pts_by_id.get(ids[0])[10]) + '\",\"' +
+                      str(pts_by_id.get(ids[0])[11]) + str(pts_by_id.get(ids[0])[12]) + '\",\"' +
+                      str(pts_by_id.get(ids[0])[13]) + '\"\n')"""
+
+for i in range(len(ids)):
+    new_line = '\"' + str(ids[i]) + '\",\"' + str(names[i]) + '\",\"'
+    for x in range(num_races):
+        new_line += str(pts_by_id.get(ids[i])[x])
+        if x == 13:
+            new_line += '\"\n'
+        else:
+            new_line += '\",\"'
+
+    # print(new_line)
+    point_data_file.write(new_line)
+    # break
+
+point_data_file.close()
+
+commands = sql.get_commands_from_script(
+    '/home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_racechart_creation.sql')
+# print(commands)
+for command in commands:
+    try:
+        if command.strip() != '':
+            query_result = sql.execute_query(command)
+            if query_result:
+                print('printing')
+                print(query_result)
+    except IOError as msg:
+        print('Command Skipped:  ', msg)
+
+sql.execute_query('commit')
+
+commands = sql.get_commands_from_script(
+    '/home/eric/PycharmProjects/ir_standings_analyzer/SQL Files & Scripts/table_racechart_dataloading.sql')
+# print(commands)
+for command in commands:
+    try:
+        if command.strip() != '':
+            query_result = sql.execute_query(command)
+            if query_result:
+                print('printing')
+                print(query_result)
+    except IOError as msg:
+        print('Command Skipped:  ', msg)
+
+sql.execute_query('commit')
+
+result = sql.execute_query('SELECT * FROM Races_Chart;')
+print(result)
 
 # Close DB connection at end of program
 sql.close_connection()
