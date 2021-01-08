@@ -20,20 +20,25 @@ if not iracing.logged:
     exit()
 
 # Specifying names of files for the CSVs downloaded
-file_names = ['00_Current', '01_Daytona', '02_Rockingham', '03_Homestead', '04_Atlanta',
+old_file_names = ['00_Current', '01_Daytona', '02_Rockingham', '03_Homestead', '04_Atlanta',
+              '05_CharlotteRoval', '06_Michigan', '07_Richmond', '08_Darlington', '09_Dover',
+              '10_LasVegas', '11_CanadianTire', '12_Texas', '13_Martinsville', '14_Phoenix']
+
+file_names = ['01_Daytona', '02_Rockingham', '03_Homestead', '04_Atlanta',
               '05_CharlotteRoval', '06_Michigan', '07_Richmond', '08_Darlington', '09_Dover',
               '10_LasVegas', '11_CanadianTire', '12_Texas', '13_Martinsville', '14_Phoenix']
 
 # Pulling all CSV files for the given series (Road To Pro 2020 is id=2721) by looping through iRacing site requests
 #   after each site is grabbed, writing the returned CSV file to its respective name from the list
 num_races = 14
-for i in range(num_races + 1):
+for i in range(1, num_races + 1):
+    print(i)
     if i == 0:
         output_resp = iracing.get_output_csv(2721, 71)
     else:
         output_resp = iracing.get_output_csv(2721, 71, race_week=i)
 
-    rtp_file = open('/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/' + file_names[i] + '.csv', 'w')
+    rtp_file = open('/home/eric/PycharmProjects/ir_standings_analyzer/Generated CSVs/' + file_names[i - 1] + '.csv', 'w')
     rtp_file.write(output_resp)
     rtp_file.close()
 
@@ -99,7 +104,7 @@ sql.execute_query('commit')
 
 # Getting customer IDs and Names of drivers from the Road To Pro Series
 result = sql.execute_query('SELECT CustomerID, Name FROM 00_Current ORDER BY Points DESC;')
-print(result)   # Debug to ensure select statement got proper data
+#print(result)   # Debug to ensure select statement got proper data
 
 
 ids = []
@@ -118,7 +123,7 @@ pts_by_id = {}
 for id in ids:
     pts_by_id[id] = []
     for index, name in enumerate(file_names):
-        if index != 0:
+        #if index != 0:
             # get points for that id from that event file
             result = sql.execute_query('SELECT Points FROM ' + name + ' WHERE CustomerID=' + str(id) + ';')
             # if there are no points, it's 0, otherwise the points from that event
@@ -148,8 +153,10 @@ point_data_file.write('\"custID\",\"Name\",\"DaytonaPts\",\"RockinghamPts\",\"Ho
                       str(pts_by_id.get(ids[0])[13]) + '\"\n')"""
 
 for i in range(len(ids)):
+    print(i)
     new_line = '\"' + str(ids[i]) + '\",\"' + str(names[i]) + '\",\"'
     for x in range(num_races):
+        print(x)
         new_line += str(pts_by_id.get(ids[i])[x])
         if x == 13:
             new_line += '\"\n'
